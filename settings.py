@@ -12,4 +12,9 @@ except Exception as e:
     SERVICE_HOST = '0.0.0.0'
     SERVICE_ADRESS = 'myproject'
     SERVICE_NAME = 'myproject'
-    SERVICE_PORT = 6000
+    SERVICE_PORT = 81
+
+    SQL_SERVER = '34.95.248.143'
+    SQL_DATABASE = 'SmartCollector'
+    SQL_USER = 'sqlserver'
+    SQL_PASS = 'sa13509'
