@@ -20,9 +20,13 @@ class PersonAppService():
     def update_person(id, data):
         try:
             bd_data = {
-               'ds_Veiculo': data['nome'],
-               'vl_CapacidadeKG': data['capacidade'],
-               'cd_Placa': data['placa']
+                'ds_Pessoa': data['nome'],
+                'ds_Endereco': data['endereco'],
+                'ds_Bairro': data['bairro'],
+                'nr_Endereco': data['numero'],
+                'ds_Login': data['login'],
+                'ds_Senha': data['senha'],
+                'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'])
             }
             person = PersonRepository.update_person(id, bd_data)
             return {'message': f'Success updating person.'}, 200

@@ -28,7 +28,7 @@ class Vehicle(FlaskView):
     def update_vehicle(self, id):
         try:
             data = request.get_json()
-            vehicle = VehicleAppService.update_vehicle(id, data)
+            vehicle = VehicleAppService.update_vehicle(data['id'], data)
             return json.dumps(vehicle, default=str), 200
         except Exception as e:
             msg = {'msg': 'Exception error from update_vehicle function.'}

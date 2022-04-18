@@ -9,6 +9,7 @@ import logging
 #Controller Imports
 from src.controller.Vehicle import Vehicle
 from src.controller.Person import Person
+from src.controller.Service import Service
 
 #Configuration
 app = Flask(__name__)
@@ -20,7 +21,7 @@ swaggerify(app, 'My-Project', '1.0.0', swagger_path='/swagger')
 #Controllers
 Vehicle.register(app)
 Person.register(app)
-
+Service.register(app)
 
 
 if __name__ == '__main__':

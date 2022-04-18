@@ -4,48 +4,48 @@ import pandas as pd
 from datetime import date, datetime
 
 from .Base.BaseRepository import BaseRepository
-from src.model.PersonModel import Person
+from src.model.ServiceModel import Service
 
 Base = declarative_base()
 
 
-class PersonRepository(BaseRepository):
+class ServiceRepository(BaseRepository):
 
-    def get_person_list():
-        query = BaseRepository.context.query(Person).filter(Person.DeletedDate == None)
+    def get_service_list():
+        query = BaseRepository.context.query(Service).filter(Service.DeletedDate == None)
         df = pd.read_sql(query.statement, BaseRepository.context.bind)
         return df.to_dict(orient='records')
 
-    def get_person_by_id(id):
+    def get_service_by_id(id):
         try:
-            query = BaseRepository.context.query(Person).filter(Person.id_Pessoa == id, Person.DeletedDate == None)
+            query = BaseRepository.context.query(Service).filter(Service.id_Coleta == id, Service.DeletedDate == None)
             df = pd.read_sql(query.statement, BaseRepository.context.bind)
             return df.to_dict(orient='records')
         except Exception as e:
             print(e)
 
-    def update_person(id, data):
+    def update_service(id, data):
         try:
-            query = BaseRepository.context.query(Person).filter(Person.id_Pessoa == id)
+            query = BaseRepository.context.query(Service).filter(Service.id_Coleta == id)
             query.update(data)
             BaseRepository.context.commit()
         except Exception as e:
             print(e)
 
-    def add_person(data):
+    def add_service(data):
         try:
-            i = insert(Person).values(data)
+            i = insert(Service).values(data)
             BaseRepository.context.execute(i)
             BaseRepository.context.commit()
         except Exception as e:
             print(e)
 
-    def delete_person(id):
+    def delete_service(id):
         try:
             data = {
                 'DeletedDate': datetime.now()
             }
-            query = BaseRepository.context.query(Person).filter(Person.id_Veiculo == id)
+            query = BaseRepository.context.query(Service).filter(Service.id_Coleta == id)
             query.update(data)
             BaseRepository.context.commit()
         except Exception as e:

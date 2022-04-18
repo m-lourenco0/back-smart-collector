@@ -1,0 +1,54 @@
+from flask import request
+from flask_classy import FlaskView, route
+import json
+from src.appservice.ServiceAppService import ServiceAppService
+
+
+class Service(FlaskView):
+
+    @route('/', methods=['GET'])
+    def get_service(self):
+        try:
+            services = ServiceAppService.get_service()
+            return json.dumps(services, default=str), 200
+        except Exception as e:
+            msg = {'msg': 'Exception error from get_service function.'}
+            return json.dumps(msg), 500
+
+    @route('/<id>', methods=['GET'])
+    def get_service_by_id(self, id):
+        try:
+            vehicle = ServiceAppService.get_service_by_id(id)
+            return json.dumps(vehicle, default=str), 200
+        except Exception as e:
+            msg = {'msg': 'Exception error from get_service_by_id function.'}
+            return json.dumps(msg), 500
+
+    @route('/', methods=['PUT'])
+    def update_service(self):
+        try:
+            data = request.get_json()
+            service = ServiceAppService.update_service(data['id'], data)
+            return json.dumps(service, default=str), 200
+        except Exception as e:
+            msg = {'msg': 'Exception error from update_service function.'}
+            return json.dumps(msg), 500
+
+    @route('/add', methods=['POST'])
+    def add_service(self):
+        try:
+            data = request.get_json()
+            services = ServiceAppService.add_service(data)
+            return json.dumps(services, default=str), 200
+        except Exception as e:
+            msg = {'msg': 'Exception error from add_service function.'}
+            return json.dumps(msg), 500
+
+    @route('/delete/<id>', methods=['POST'])
+    def delete_vehicle(self, id):
+        try:
+            services = ServiceAppService.delete_service(id)
+            return json.dumps(services, default=str), 200
+        except Exception as e:
+            msg = {'msg': 'Exception error from delete_service function.'}
+            return json.dumps(msg), 500
