@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_classy_swagger import swaggerify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import settings
 from werkzeug.serving import run_simple
 from dynaconf import settings
@@ -10,10 +10,11 @@ import logging
 from src.controller.Vehicle import Vehicle
 from src.controller.Person import Person
 from src.controller.Service import Service
+from src.controller.Login import Login
 
 #Configuration
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 #Registro no swagger.
 swaggerify(app, 'My-Project', '1.0.0', swagger_path='/swagger')
@@ -22,6 +23,7 @@ swaggerify(app, 'My-Project', '1.0.0', swagger_path='/swagger')
 Vehicle.register(app)
 Person.register(app)
 Service.register(app)
+Login.register(app)
 
 
 if __name__ == '__main__':
