@@ -42,7 +42,7 @@ class PersonAppService():
                'nr_Endereco': data['numero'],
                'ds_Login': data['login'],
                'ds_Senha': data['senha'],
-               'tp_TipoUsuario': 'u',
+               'tp_TipoUsuario': 'c',
                'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'])
             }
             person = PersonRepository.add_person(bd_data)

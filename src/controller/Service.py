@@ -44,8 +44,8 @@ class Service(FlaskView):
             msg = {'msg': 'Exception error from add_service function.'}
             return json.dumps(msg), 500
 
-    @route('/delete/<id>', methods=['POST'])
-    def delete_vehicle(self, id):
+    @route('/delete/<id>', methods=['DELETE'])
+    def delete_service(self, id):
         try:
             services = ServiceAppService.delete_service(id)
             return json.dumps(services, default=str), 200

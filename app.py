@@ -11,6 +11,7 @@ from src.controller.Vehicle import Vehicle
 from src.controller.Person import Person
 from src.controller.Service import Service
 from src.controller.Login import Login
+from src.controller.Solicitation import Solicitation
 
 #Configuration
 app = Flask(__name__)
@@ -24,6 +25,7 @@ Vehicle.register(app)
 Person.register(app)
 Service.register(app)
 Login.register(app)
+Solicitation.register(app)
 
 
 if __name__ == '__main__':

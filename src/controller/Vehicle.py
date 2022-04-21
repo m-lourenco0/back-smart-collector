@@ -44,7 +44,7 @@ class Vehicle(FlaskView):
             msg = {'msg': 'Exception error from add_vehicles function.'}
             return json.dumps(msg), 500
 
-    @route('/delete/<id>', methods=['POST'])
+    @route('/delete/<id>', methods=['DELETE'])
     def delete_vehicle(self, id):
         try:
             vehicles = VehicleAppService.delete_vehicle(id)
