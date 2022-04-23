@@ -2,10 +2,12 @@ from flask import request
 from flask_classy import FlaskView, route
 import json
 from src.appservice.PersonAppService import PersonAppService
+from flask_jwt_extended import jwt_required
 
 
 class Person(FlaskView):
 
+    
     @route('/', methods=['GET'])
     def get_person(self):
         try:

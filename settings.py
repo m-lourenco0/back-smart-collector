@@ -18,3 +18,7 @@ except Exception as e:
     SQL_DATABASE = 'SmartCollector'
     SQL_USER = 'sqlserver'
     SQL_PASS = 'sa13509'
+
+    API_KEY = 'AIzaSyD175PxUd2mGLbrGd6YYwP35je2hHIuuLI'
+
+    SECRET_KEY = 'minhachavesupersecreta'

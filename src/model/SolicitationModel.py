@@ -1,5 +1,5 @@
 from sqlalchemy import  Column
-from sqlalchemy.dialects.mssql import VARCHAR,DECIMAL,INTEGER,DATETIME
+from sqlalchemy.dialects.mssql import VARCHAR,DECIMAL,INTEGER,DATETIME, DATETIME2
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
@@ -12,3 +12,5 @@ class Solicitation(Base):
     id_Coleta = Column(INTEGER)
     vl_LatitudeLongitude = Column(VARCHAR(50))
     ds_Observacao = Column(VARCHAR(500))
+    ds_Endereco = Column(VARCHAR(50))
+    DeletedDate = Column(DATETIME2)

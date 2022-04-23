@@ -12,3 +12,4 @@ class Service(Base):
     st_Status = Column(VARCHAR(20))
     dt_Chegada = Column(DATETIME)
     DeletedDate = Column(DATETIME2)
+    dt_Solicitacao = Column(DATETIME2)

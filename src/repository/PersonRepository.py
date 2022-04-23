@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import pandas as pd
 from datetime import date, datetime
 
+
 from .Base.BaseRepository import BaseRepository
 from src.model.PersonModel import Person
 

@@ -15,6 +15,15 @@ class Solicitation(FlaskView):
             msg = {'msg': 'Exception error from get_solicitation function.'}
             return json.dumps(msg), 500
 
+    @route('/list', methods=['GET'])
+    def get_solicitation_list(self):
+        try:
+            solicitations = SolicitationAppService.get_solicitation_list()
+            return json.dumps(solicitations, default=str), 200
+        except Exception as e:
+            msg = {'msg': 'Exception error from get_solicitation_list function.'}
+            return json.dumps(msg), 500
+
     @route('/<id>', methods=['GET'])
     def get_solicitation_by_id(self, id):
         try:

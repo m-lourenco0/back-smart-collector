@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_classy_swagger import swaggerify
-from flask_cors import CORS, cross_origin
+from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 import settings
 from werkzeug.serving import run_simple
 from dynaconf import settings
-import logging
+
+import jwt
 
 #Controller Imports
 from src.controller.Vehicle import Vehicle
@@ -15,6 +17,8 @@ from src.controller.Solicitation import Solicitation
 
 #Configuration
 app = Flask(__name__)
+app.config['SECRET_KEY'] = settings.SECRET_KEY
+jwt = JWTManager(app)
 CORS(app)
 
 #Registro no swagger.
