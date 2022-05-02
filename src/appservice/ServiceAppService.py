@@ -48,7 +48,7 @@ class ServiceAppService():
             id_list = data['id_List']
             geocode_list = []
 
-            service_id = ServiceRepository.add_service({'dt_Solicitacao': datetime.now(), 'st_Status': 'Pendente'})
+            service_id = ServiceRepository.add_service({'dt_Solicitacao': datetime.now(), 'st_Status': 'Pendente', 'id_Veiculo': data['id_Veiculo']})
 
             for id in id_list:
                 SolicitationRepository.update_solicitation(id, {'id_Coleta': service_id})
@@ -58,6 +58,8 @@ class ServiceAppService():
             s_list.apply(lambda x: geocode_list.append(x['vl_LatitudeLongitude']), axis=1)
 
             route = GoogleMaps.get_routes_by_coordinates(geocode_list)
+
+            ServiceRepository.update_service(service_id, route)
             
             return {'message': f'Success adding service.'}, 200
         except Exception as e:

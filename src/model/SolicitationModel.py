@@ -12,5 +12,5 @@ class Solicitation(Base):
     id_Coleta = Column(INTEGER)
     vl_LatitudeLongitude = Column(VARCHAR(50))
     ds_Observacao = Column(VARCHAR(500))
-    ds_Endereco = Column(VARCHAR(50))
+    ds_Endereco = Column(VARCHAR(200))
     DeletedDate = Column(DATETIME2)

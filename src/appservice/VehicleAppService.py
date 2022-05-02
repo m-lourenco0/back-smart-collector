@@ -9,6 +9,13 @@ class VehicleAppService():
             return {'data': vehicles, 'message': f'Success getting vehicle list.'}, 200
         except Exception as e:
             print(e)
+
+    def get_available_vehicle():
+        try:
+            vehicles = VehicleRepository.get_available_vehicle_list()
+            return {'data': vehicles, 'message': f'Success getting vehicle list.'}, 200
+        except Exception as e:
+            print(e)
         
     def get_vehicle_by_id(id):
         try:

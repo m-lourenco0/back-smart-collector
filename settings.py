@@ -7,12 +7,21 @@ try:
     SERVICE_NAME = environ['SERVICE_NAME']
     SERVICE_PORT = int(environ['SERVICE_PORT'])
 
+    SQL_SERVER = environ['SQL_SERVER']
+    SQL_DATABASE = environ['SQL_DATABASE']
+    SQL_USER = environ['SQL_USER']
+    SQL_PASS = environ['SQL_PASS']
+
+    API_KEY = environ['API_KEY']
+
+    SECRET_KEY = environ['SECRET_KEY']
+
 except Exception as e:
 
     SERVICE_HOST = '0.0.0.0'
     SERVICE_ADRESS = 'myproject'
     SERVICE_NAME = 'myproject'
-    SERVICE_PORT = 81
+    SERVICE_PORT = 5000
 
     SQL_SERVER = '34.95.248.143'
     SQL_DATABASE = 'SmartCollector'

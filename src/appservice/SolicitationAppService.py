@@ -53,9 +53,9 @@ class SolicitationAppService():
             bd_data = {
                 'id_Pessoa': data['id_Pessoa'],
                 'dt_Solicitacao': pd.to_datetime(data['dt_Solicitacao']),
-                'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['ds_Endereco'], data['ds_Bairro'], data['nr_Endereco']),
+                'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['ds_Endereco'], data['ds_Bairro'], data['nr_Endereco'], data['ds_Cidade'], data['ds_Estado']),
                 'ds_Observacao': data['ds_Observacao'],
-                'ds_Endereco': data['ds_Endereco'] + ', ' + data['ds_Bairro'] + ', ' + str(data['nr_Endereco']),
+                'ds_Endereco': str(data['ds_Endereco'] + ', ' + data['ds_Bairro'] + ', ' + str(data['nr_Endereco']) + ', ' + data['ds_Cidade'] + ', ' + data['ds_Estado']),
             }
             solicitation = SolicitationRepository.add_solicitation(bd_data)
             return {'message': f'Success adding solicitation.'}, 200

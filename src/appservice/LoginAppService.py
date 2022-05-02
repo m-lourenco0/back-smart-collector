@@ -1,7 +1,7 @@
-from os import access
+from flask import jsonify
 from src.repository.LoginRepository import LoginRepository
 from src.utils.permissions import get_permissions
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, set_access_cookies, create_refresh_token, set_refresh_cookies
 
 class LoginAppService():
 
@@ -11,14 +11,17 @@ class LoginAppService():
             
             if (len(user) > 0):
                 user = user[0]
-                msg = 'User logged in successfully.'
                 permissions = get_permissions(user['tp_TipoUsuario'])
                 access_token = create_access_token(identity=user)
-                return {'token': access_token, 'permissions': permissions, 'message': msg}, 200
+                refresh_token = create_refresh_token(identity=user)
+                response = jsonify({'token': access_token, 'permissions': permissions, 'message': 'User logged in successfully.'})
+                set_access_cookies(response, access_token)
+                set_refresh_cookies(response, refresh_token)
             else:
-                msg = 'User not found.'
-                permissions = []
-                return {'message': msg}, 401
+                response = jsonify({'message': 'Invalid username or password'})
+                response.status_code = 401
+            
+            return response
         except Exception as e:
-            print(e)
+            print(f'Exception error from login function. Error: {e}', flush=True)
         

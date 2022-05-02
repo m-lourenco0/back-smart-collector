@@ -16,6 +16,11 @@ class VehicleRepository(BaseRepository):
         df = pd.read_sql(query.statement, BaseRepository.context.bind)
         return df.to_dict(orient='records')
 
+    def get_available_vehicle_list():
+        query = BaseRepository.context.query(Vehicle).filter(Vehicle.DeletedDate == None)
+        df = pd.read_sql(query.statement, BaseRepository.context.bind)
+        return df.to_dict(orient='records')
+
     def get_vehicle_by_id(id):
         try:
             query = BaseRepository.context.query(Vehicle).filter(Vehicle.id_Veiculo == id, Vehicle.DeletedDate == None)

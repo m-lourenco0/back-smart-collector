@@ -15,3 +15,5 @@ class Person(Base):
     tp_TipoUsuario = Column(VARCHAR(1))
     vl_LatitudeLongitude = Column(VARCHAR(50))
     DeletedDate = Column(DATETIME2)
+    ds_Cidade = Column(VARCHAR(50))
+    ds_Estado = Column(VARCHAR(50))

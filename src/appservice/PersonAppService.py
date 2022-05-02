@@ -1,3 +1,5 @@
+from flask_jwt_extended import jwt_required
+
 from src.repository.PersonRepository import PersonRepository
 from src.utils.maps_utils import GoogleMaps
 
@@ -26,7 +28,7 @@ class PersonAppService():
                 'nr_Endereco': data['numero'],
                 'ds_Login': data['login'],
                 'ds_Senha': data['senha'],
-                'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'])
+                'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'], data['cidade'], data['estado'])
             }
             person = PersonRepository.update_person(id, bd_data)
             return {'message': f'Success updating person.'}, 200
@@ -43,7 +45,7 @@ class PersonAppService():
                'ds_Login': data['login'],
                'ds_Senha': data['senha'],
                'tp_TipoUsuario': 'c',
-               'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'])
+               'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'], data['cidade'], data['estado'])
             }
             person = PersonRepository.add_person(bd_data)
             return {'message': f'Success adding person.'}, 200

@@ -1,13 +1,16 @@
-from flask import request
-from flask_classy import FlaskView, route
-import json
+from flask import Blueprint, request
+from flask_jwt_extended import jwt_required
 from src.appservice.ServiceAppService import ServiceAppService
 
+import json
 
-class Service(FlaskView):
+class Service():
 
-    @route('/', methods=['GET'])
-    def get_service(self):
+    service_controller = Blueprint('service_controller', __name__, url_prefix='/service')
+
+    @service_controller.route('/', methods=['GET'])
+    @jwt_required()
+    def get_service():
         try:
             services = ServiceAppService.get_service()
             return json.dumps(services, default=str), 200
@@ -15,8 +18,9 @@ class Service(FlaskView):
             msg = {'msg': 'Exception error from get_service function.'}
             return json.dumps(msg), 500
 
-    @route('/<id>', methods=['GET'])
-    def get_service_by_id(self, id):
+    @service_controller.route('/<id>', methods=['GET'])
+    @jwt_required()
+    def get_service_by_id(id):
         try:
             vehicle = ServiceAppService.get_service_by_id(id)
             return json.dumps(vehicle, default=str), 200
@@ -24,8 +28,9 @@ class Service(FlaskView):
             msg = {'msg': 'Exception error from get_service_by_id function.'}
             return json.dumps(msg), 500
 
-    @route('/', methods=['PUT'])
-    def update_service(self):
+    @service_controller.route('/', methods=['PUT'])
+    @jwt_required()
+    def update_service():
         try:
             data = request.get_json()
             service = ServiceAppService.update_service(data['id'], data)
@@ -34,8 +39,9 @@ class Service(FlaskView):
             msg = {'msg': 'Exception error from update_service function.'}
             return json.dumps(msg), 500
 
-    @route('/add', methods=['POST'])
-    def add_service(self):
+    @service_controller.route('/add', methods=['POST'])
+    @jwt_required()
+    def add_service():
         try:
             data = request.get_json()
             services = ServiceAppService.add_service(data)
@@ -44,8 +50,9 @@ class Service(FlaskView):
             msg = {'msg': 'Exception error from add_service function.'}
             return json.dumps(msg), 500
 
-    @route('/delete/<id>', methods=['DELETE'])
-    def delete_service(self, id):
+    @service_controller.route('/delete/<id>', methods=['DELETE'])
+    @jwt_required()
+    def delete_service(id):
         try:
             services = ServiceAppService.delete_service(id)
             return json.dumps(services, default=str), 200

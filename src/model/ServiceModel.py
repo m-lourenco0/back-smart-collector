@@ -13,3 +13,6 @@ class Service(Base):
     dt_Chegada = Column(DATETIME)
     DeletedDate = Column(DATETIME2)
     dt_Solicitacao = Column(DATETIME2)
+    ds_Origin = Column(VARCHAR(500))
+    ds_Waypoints = Column(VARCHAR(500))
+    ds_Destination = Column(VARCHAR(500))
