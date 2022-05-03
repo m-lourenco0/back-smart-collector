@@ -16,8 +16,8 @@ class LoginAppService():
                 access_token = create_access_token(identity=user)
                 refresh_token = create_refresh_token(identity=user)
                 response = jsonify({'token': access_token, 'permissions': permissions, 'message': 'User logged in successfully.'})
-                set_access_cookies(response, access_token, domain=settings.COOKIE_DOMAIN)
-                set_refresh_cookies(response, refresh_token, domain=settings.COOKIE_DOMAIN)
+                set_access_cookies(response, access_token)
+                set_refresh_cookies(response, refresh_token)
             else:
                 response = jsonify({'message': 'Invalid username or password'})
                 response.status_code = 401

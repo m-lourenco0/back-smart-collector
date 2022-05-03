@@ -27,7 +27,7 @@ class Login():
         permissions = get_permissions(current_user['sub']['tp_TipoUsuario'])
         access_token = create_access_token(identity=get_jwt_identity(), fresh=False)
         response = jsonify({'msg': 'Token refreshed.', 'token': access_token, 'permissions': permissions})
-        set_access_cookies(response, access_token, domain=settings.COOKIE_DOMAIN)
+        set_access_cookies(response, access_token)
         return response
 
     @login_controller.route('/logout', methods=['POST'])

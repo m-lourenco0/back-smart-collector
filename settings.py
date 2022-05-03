@@ -34,4 +34,4 @@ except Exception as e:
 
     SECRET_KEY = 'minhachavesupersecreta'
 
-    COOKIE_DOMAIN = 'https://smart-collector-app.vercel.app'
+    COOKIE_DOMAIN = '127.0.0.1'

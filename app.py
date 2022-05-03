@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = settings.SECRET_KEY
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=5)
+app.config["JWT_COOKIE_DOMAIN"] = settings.COOKIE_DOMAIN
 # app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 jwt = JWTManager(app)
 CORS(app)
