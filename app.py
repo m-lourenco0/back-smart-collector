@@ -1,5 +1,5 @@
 from os import environ
-from flask import Flask
+from flask import Flask, jsonify
 # from flask_classy_swagger import swaggerify
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -9,16 +9,18 @@ from datetime import timedelta
 #Configuration
 app = Flask(__name__)
 app.config['SECRET_KEY'] = settings.SECRET_KEY
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=120)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=5)
-app.config["JWT_COOKIE_DOMAIN"] = settings.COOKIE_DOMAIN
-# app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 jwt = JWTManager(app)
 CORS(app)
 
 
 #Registro no swagger.
 # swaggerify(app, 'My-Project', '1.0.0', swagger_path='/swagger')
+
+@jwt.expired_token_loader
+def my_expired_token_callback(jwt_header, jwt_payload):
+    return jsonify(err="Token has expired"), 403
 
 @app.after_request
 def after_request(response):
