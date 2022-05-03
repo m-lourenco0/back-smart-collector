@@ -4,6 +4,7 @@ from src.appservice.LoginAppService import LoginAppService
 from src.utils.permissions import get_permissions
 
 import json
+import settings
 
 class Login():
 
@@ -26,7 +27,7 @@ class Login():
         permissions = get_permissions(current_user['sub']['tp_TipoUsuario'])
         access_token = create_access_token(identity=get_jwt_identity(), fresh=False)
         response = jsonify({'msg': 'Token refreshed.', 'token': access_token, 'permissions': permissions})
-        set_access_cookies(response, access_token)
+        set_access_cookies(response, access_token, domain=settings.COOKIE_DOMAIN)
         return response
 
     @login_controller.route('/logout', methods=['POST'])
