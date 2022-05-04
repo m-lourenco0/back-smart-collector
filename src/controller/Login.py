@@ -1,9 +1,10 @@
 from flask import jsonify, request, Blueprint
-from flask_jwt_extended import create_access_token, get_jwt_identity, unset_jwt_cookies, jwt_required, set_access_cookies, get_jwt
+from flask_jwt_extended import create_access_token, get_jwt_identity, unset_jwt_cookies, jwt_required, get_jwt
 from src.appservice.LoginAppService import LoginAppService
 from src.utils.permissions import get_permissions
 
 import json
+import settings
 
 class Login():
 
@@ -20,13 +21,12 @@ class Login():
             return json.dumps(msg), 500
 
     @login_controller.route('/refresh', methods=['GET'])
-    @jwt_required(refresh=True, locations=['cookies'])
+    @jwt_required(refresh=True)
     def refresh_token():
         current_user = get_jwt()
         permissions = get_permissions(current_user['sub']['tp_TipoUsuario'])
         access_token = create_access_token(identity=get_jwt_identity(), fresh=False)
         response = jsonify({'msg': 'Token refreshed.', 'token': access_token, 'permissions': permissions})
-        set_access_cookies(response, access_token)
         return response
 
     @login_controller.route('/logout', methods=['POST'])

@@ -16,6 +16,8 @@ try:
 
     SECRET_KEY = environ['SECRET_KEY']
 
+    COOKIE_DOMAIN = environ['COOKIE_DOMAIN']
+
 except Exception as e:
 
     SERVICE_HOST = '0.0.0.0'
@@ -31,3 +33,5 @@ except Exception as e:
     API_KEY = 'AIzaSyD175PxUd2mGLbrGd6YYwP35je2hHIuuLI'
 
     SECRET_KEY = 'minhachavesupersecreta'
+
+    COOKIE_DOMAIN = '127.0.0.1'
