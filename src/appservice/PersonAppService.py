@@ -40,14 +40,16 @@ class PersonAppService():
     def add_person(data):
         try:
             bd_data = {
-               'ds_Pessoa': data['nome'],
-               'ds_Endereco': data['endereco'],
-               'ds_Bairro': data['bairro'],
-               'nr_Endereco': data['numero'],
-               'ds_Login': data['login'],
-               'ds_Senha': data['senha'],
-               'tp_TipoUsuario': 'c',
-               'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'], data['cidade'], data['estado'])
+                'ds_Pessoa': data['nome'],
+                'ds_Endereco': data['endereco'],
+                'ds_Bairro': data['bairro'],
+                'nr_Endereco': data['numero'],
+                'ds_Cidade': data['cidade'],
+                'ds_Estado': data['estado'],
+                'ds_Login': data['login'],
+                'ds_Senha': data['senha'],
+                'tp_TipoUsuario': 'c',
+                'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'], data['cidade'], data['estado'])
             }
             person = PersonRepository.add_person(bd_data)
             return {'message': f'Success adding person.'}, 200
