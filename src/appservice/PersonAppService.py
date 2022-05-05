@@ -26,6 +26,8 @@ class PersonAppService():
                 'ds_Endereco': data['endereco'],
                 'ds_Bairro': data['bairro'],
                 'nr_Endereco': data['numero'],
+                'ds_Cidade': data['cidade'],
+                'ds_Estado': data['estado'],
                 'ds_Login': data['login'],
                 'ds_Senha': data['senha'],
                 'vl_LatitudeLongitude': GoogleMaps.get_geocode(data['endereco'], data['bairro'], data['numero'], data['cidade'], data['estado'])
