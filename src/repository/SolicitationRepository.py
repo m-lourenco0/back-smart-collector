@@ -45,6 +45,14 @@ class SolicitationRepository(BaseRepository):
         except Exception as e:
             print(e)
 
+    def clean_service_id(id):
+        try:
+            query = BaseRepository.context.query(Solicitation).filter(Solicitation.id_Coleta == id)
+            query.update({'id_Coleta': None})
+            BaseRepository.context.commit()
+        except Exception as e:
+            print(f'Error trying to clean service_id from solicitations. Error: {e}. Id_Coleta: {id}', flush=True)
+
     def update_solicitation(id, data):
         try:
             query = BaseRepository.context.query(Solicitation).filter(Solicitation.id_Solicitacao == id)
