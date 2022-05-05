@@ -9,11 +9,10 @@ from datetime import timedelta
 #Configuration
 app = Flask(__name__)
 app.config['SECRET_KEY'] = settings.SECRET_KEY
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=120)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=5)
 jwt = JWTManager(app)
 CORS(app)
-
 
 #Registro no swagger.
 # swaggerify(app, 'My-Project', '1.0.0', swagger_path='/swagger')
@@ -37,7 +36,6 @@ from src.controller.Login import Login
 from src.controller.Solicitation import Solicitation
 from src.controller.Routes import Routes
 
-
 #Controllers
 app.register_blueprint(Vehicle.vehicle_controller)
 app.register_blueprint(Person.person_controller)
@@ -45,6 +43,7 @@ app.register_blueprint(Service.service_controller)
 app.register_blueprint(Login.login_controller)
 app.register_blueprint(Solicitation.solicitation_controller)
 app.register_blueprint(Routes.routes_controller)
+
 
 
 if __name__ == '__main__':

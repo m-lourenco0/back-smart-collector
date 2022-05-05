@@ -10,14 +10,14 @@ class PersonAppService():
             person = PersonRepository.get_person_list()
             return {'data': person, 'message': f'Success getting person list.'}, 200
         except Exception as e:
-            print(e)
+            print(f'Error getting person list. Error: {e}', flush=True)
         
     def get_person_by_id(id):
         try:
             person = PersonRepository.get_person_by_id(id)
             return {'data': person, 'message': f'Success getting person list.'}, 200
         except Exception as e:
-            print(e)
+            print(f'Error getting person by id. Error: {e}', flush=True)
 
     def update_person(id, data):
         try:
@@ -33,7 +33,7 @@ class PersonAppService():
             person = PersonRepository.update_person(id, bd_data)
             return {'message': f'Success updating person.'}, 200
         except Exception as e:
-            print(e)
+            print(f'Error updating person. Error: {e}', flush=True)
 
     def add_person(data):
         try:
@@ -50,12 +50,12 @@ class PersonAppService():
             person = PersonRepository.add_person(bd_data)
             return {'message': f'Success adding person.'}, 200
         except Exception as e:
-            print(e)
+            print(f'Error adding person. Error: {e}', flush=True)
 
     def delete_person(data):
         try:
             person = PersonRepository.delete_person(data)
             return {'message': f'Success deleting person.'}, 200
         except Exception as e:
-            print(e)
+            print(f'Error deleting person. Error: {e}', flush=True)
         
