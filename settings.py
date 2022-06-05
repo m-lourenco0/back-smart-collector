@@ -19,19 +19,6 @@ try:
     COOKIE_DOMAIN = environ['COOKIE_DOMAIN']
 
 except Exception as e:
-
-    SERVICE_HOST = '0.0.0.0'
-    SERVICE_ADRESS = 'myproject'
-    SERVICE_NAME = 'myproject'
-    SERVICE_PORT = 5000
-
-    SQL_SERVER = '34.95.248.143'
-    SQL_DATABASE = 'SmartCollector'
-    SQL_USER = 'sqlserver'
-    SQL_PASS = 'sa13509'
-
-    API_KEY = 'AIzaSyD175PxUd2mGLbrGd6YYwP35je2hHIuuLI'
-
-    SECRET_KEY = 'minhachavesupersecreta'
-
-    COOKIE_DOMAIN = '127.0.0.1'
+    print(e)
+    print('Error: Missing environment variables')
+    exit(1)
