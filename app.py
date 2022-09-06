@@ -1,6 +1,6 @@
 from os import environ
 from flask import Flask, jsonify
-# from flask_classy_swagger import swaggerify
+from flask_classy_swagger import swaggerify
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 import settings
@@ -15,7 +15,7 @@ jwt = JWTManager(app)
 CORS(app)
 
 #Registro no swagger.
-# swaggerify(app, 'My-Project', '1.0.0', swagger_path='/swagger')
+swaggerify(app, 'SmartCollector', '0.1.1', swagger_path='/swagger')
 
 @jwt.expired_token_loader
 def my_expired_token_callback(jwt_header, jwt_payload):
